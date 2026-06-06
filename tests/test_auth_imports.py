@@ -1,7 +1,7 @@
 """Test that auth module imports and basic structures work."""
 
 import pytest
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from uuid import uuid4
 
 from conauth.auth import AuthContext, SCOPES
@@ -11,7 +11,7 @@ def test_auth_context_creation():
     """AuthContext should be creatable with valid fields."""
     tenant_id = uuid4()
     principal_id = uuid4()
-    now = datetime.utcnow()
+    now = datetime.now(timezone.utc)
     exp = now + timedelta(minutes=15)
 
     ctx = AuthContext(
@@ -36,7 +36,7 @@ def test_auth_context_device():
     """AuthContext should support device principals (no auth_session_id)."""
     tenant_id = uuid4()
     principal_id = uuid4()
-    now = datetime.utcnow()
+    now = datetime.now(timezone.utc)
 
     ctx = AuthContext(
         tenant_id=tenant_id,
@@ -71,14 +71,15 @@ def test_auth_context_scopes_frozen():
         principal_type="human",
         device_class="browser",
         scopes=frozenset(["conauth:session:create"]),
-        issued_at=datetime.utcnow(),
-        expires_at=datetime.utcnow() + timedelta(minutes=15),
+        issued_at=datetime.now(timezone.utc),
+        expires_at=datetime.now(timezone.utc) + timedelta(minutes=15),
         source="oidc_jwt",
         token_id="jti-123",
     )
 
-    with pytest.raises(TypeError):
-        ctx.scopes.add("conauth:command:receive")
+    # frozenset has no add method
+    with pytest.raises(AttributeError):
+        ctx.scopes.add("conauth:command:receive")  # type: ignore
 
 
 if __name__ == "__main__":
