@@ -102,7 +102,7 @@ See `ARCHITECTURE.md` Risk Register for full list.
 
 ## License
 
-Proprietary — Internal use only.
+MIT License — see `LICENSE` file for details.
 
 ---
 
