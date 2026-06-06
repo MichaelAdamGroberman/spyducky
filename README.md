@@ -89,16 +89,19 @@ See `ARCHITECTURE.md` for full rationale.
 
 See `ARCHITECTURE.md` Risk Register for full list.
 
-## Next Steps
+## Architecture Documents
+
+- **[ARCHITECTURE.md](./ARCHITECTURE.md)** — H100 centralized inference design, ADRs, scaling characteristics, 20-task engineering roadmap
+- **[IAM.md](./IAM.md)** — Authentication & authorization for multi-tenant SaaS + on-prem + IP cameras, OAuth/OIDC + API keys, fallback paths, 20-task implementation roadmap
+
+## Next Steps (Engineering)
 
 1. ✅ Architecture approved
-2. ⏳ Confirm target repo location (~/Projects/conauth/ or ~/RedAI/cav/)
-3. ⏳ Stand up cav-gateway FastAPI + WebSocket protocol
-4. ⏳ Integrate aiortc + stub NVDEC
-5. ⏳ Wire to Triton with TensorRT placeholders
-6. ⏳ Bench cross-session batching
-7. ⏳ Active/standby failover
-8. ⏳ E2E test: client → H.264 → COMMAND → ack
+2. ✅ IAM design approved
+3. ⏳ Task 1: Add IAM dependencies + module skeleton
+4. ⏳ Tasks 2–6: Core auth modules (JWT, OIDC, principals, sessions, API-key)
+5. ⏳ Tasks 7–13: RBAC, audit, middleware, gateway endpoints
+6. ⏳ Tasks 14–20: Admin API, security tests, runbooks, degradation tests
 
 ## License
 
