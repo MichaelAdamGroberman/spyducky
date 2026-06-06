@@ -215,15 +215,6 @@ Example: `spdk_prod_acme_K7QR8.5n3xJ...`
 
 See `ARCHITECTURE.md` for the full 20-task breakdown with dependencies and acceptance criteria.
 
-## Contributing
-
-This is a public MIT repo. Security fixes and IAM improvements welcome via PR. For significant changes:
-
-1. Open an issue to discuss the design
-2. Reference the ADRs above
-3. Ensure all three deployment models are considered
-4. Add tests for the cross-tenant isolation layers
-
 ---
 
 **Last updated**: 2026-06-06  
